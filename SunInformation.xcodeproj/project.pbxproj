@@ -12,6 +12,9 @@
 		0415FD2820C709670071BAE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0415FD2620C709670071BAE7 /* Main.storyboard */; };
 		0415FD2A20C709680071BAE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0415FD2920C709680071BAE7 /* Assets.xcassets */; };
 		0415FD2D20C709680071BAE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0415FD2B20C709680071BAE7 /* LaunchScreen.storyboard */; };
+		0415FD3720C714970071BAE7 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415FD3620C714970071BAE7 /* Information.swift */; };
+		0415FD3920C901360071BAE7 /* SunService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415FD3820C901360071BAE7 /* SunService.swift */; };
+		414FAD3CC1F97F54B721A499 /* Pods_SunInformation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3563477B4D486C5ABD15B554 /* Pods_SunInformation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,11 @@
 		0415FD2920C709680071BAE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0415FD2C20C709680071BAE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0415FD2E20C709690071BAE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0415FD3620C714970071BAE7 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
+		0415FD3820C901360071BAE7 /* SunService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunService.swift; sourceTree = "<group>"; };
+		3563477B4D486C5ABD15B554 /* Pods_SunInformation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunInformation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DB072161F84FF603706F8F7 /* Pods-SunInformation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunInformation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunInformation/Pods-SunInformation.debug.xcconfig"; sourceTree = "<group>"; };
+		E1090E07F552D7E7883245DC /* Pods-SunInformation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunInformation.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunInformation/Pods-SunInformation.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				414FAD3CC1F97F54B721A499 /* Pods_SunInformation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,8 @@
 			children = (
 				0415FD2120C709670071BAE7 /* SunInformation */,
 				0415FD2020C709670071BAE7 /* Products */,
+				1973E0BDF8887D7E8E69BDBE /* Pods */,
+				BA26A14A093290AC90B60D81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +66,56 @@
 			isa = PBXGroup;
 			children = (
 				0415FD2220C709670071BAE7 /* AppDelegate.swift */,
-				0415FD2420C709670071BAE7 /* ViewController.swift */,
-				0415FD2620C709670071BAE7 /* Main.storyboard */,
+				0415FD3B20C90B760071BAE7 /* Views */,
+				0415FD3A20C90B2C0071BAE7 /* Controllers */,
+				0415FD3C20C90BB00071BAE7 /* Models */,
 				0415FD2920C709680071BAE7 /* Assets.xcassets */,
 				0415FD2B20C709680071BAE7 /* LaunchScreen.storyboard */,
 				0415FD2E20C709690071BAE7 /* Info.plist */,
 			);
 			path = SunInformation;
+			sourceTree = "<group>";
+		};
+		0415FD3A20C90B2C0071BAE7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0415FD2420C709670071BAE7 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0415FD3B20C90B760071BAE7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0415FD2620C709670071BAE7 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0415FD3C20C90BB00071BAE7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0415FD3620C714970071BAE7 /* Information.swift */,
+				0415FD3820C901360071BAE7 /* SunService.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1973E0BDF8887D7E8E69BDBE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9DB072161F84FF603706F8F7 /* Pods-SunInformation.debug.xcconfig */,
+				E1090E07F552D7E7883245DC /* Pods-SunInformation.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BA26A14A093290AC90B60D81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3563477B4D486C5ABD15B554 /* Pods_SunInformation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0415FD3120C709690071BAE7 /* Build configuration list for PBXNativeTarget "SunInformation" */;
 			buildPhases = (
+				357F41107F61F86B9EC883CD /* [CP] Check Pods Manifest.lock */,
 				0415FD1B20C709670071BAE7 /* Sources */,
 				0415FD1C20C709670071BAE7 /* Frameworks */,
 				0415FD1D20C709670071BAE7 /* Resources */,
+				CB726353D4B424DFF30AFB72 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +186,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		357F41107F61F86B9EC883CD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SunInformation-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB726353D4B424DFF30AFB72 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SunInformation/Pods-SunInformation-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SunInformation/Pods-SunInformation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0415FD1B20C709670071BAE7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0415FD3720C714970071BAE7 /* Information.swift in Sources */,
 				0415FD2520C709670071BAE7 /* ViewController.swift in Sources */,
+				0415FD3920C901360071BAE7 /* SunService.swift in Sources */,
 				0415FD2320C709670071BAE7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +375,7 @@
 		};
 		0415FD3220C709690071BAE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DB072161F84FF603706F8F7 /* Pods-SunInformation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -295,6 +393,7 @@
 		};
 		0415FD3320C709690071BAE7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1090E07F552D7E7883245DC /* Pods-SunInformation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
