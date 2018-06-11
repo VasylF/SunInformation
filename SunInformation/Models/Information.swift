@@ -9,6 +9,7 @@
 import Foundation
 
 class Information {
+    
     let sunrise: String?
     let sunset: String?
 
@@ -29,4 +30,5 @@ class Information {
             self.sunset = nil
         }
     }
+    
 }

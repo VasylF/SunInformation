@@ -8,13 +8,15 @@
 
 import Foundation
 import Alamofire
-//"https://api.sunrise-sunset.org/json?lat=49.839683&lng=24.029717"
 
 class SunService {
     
-    static let sunURL = "https://api.sunrise-sunset.org/json?"
+    static let shared = SunService()
+    let sunURL = "https://api.sunrise-sunset.org/json?"
     
-    static func getSunInformation(latitude: Double, longitude: Double, completion:  @escaping (Information?) -> Void) {
+    private init(){}
+    
+    func getSunInformation(latitude: Double, longitude: Double, completion:  @escaping (Information?) -> Void) {
         let url = sunURL + "lat=\(latitude)&lng=\(longitude)"
         if let sunInformationURL = URL(string: "\(url)") {
             Alamofire.request(sunInformationURL).responseJSON { (response) in
@@ -29,7 +31,5 @@ class SunService {
             }
         }
     }
-    
-    
     
 }
