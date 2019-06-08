@@ -11,27 +11,27 @@ import CoreLocation
 import GooglePlaces
 
 class ViewController: UIViewController {
-
+    
     //MARK: Outlets
     
-    @IBOutlet weak var viewImage: UIImageView!
-    @IBOutlet weak var sunsetLabel: UILabel!
-    @IBOutlet weak var sunriseLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet private weak var viewImage: UIImageView!
+    @IBOutlet private weak var sunsetLabel: UILabel!
+    @IBOutlet private weak var sunriseLabel: UILabel!
+    @IBOutlet private weak var cityLabel: UILabel!
+    @IBOutlet private weak var countryLabel: UILabel!
     
     //MARK: Properties
     
-    var resultsViewController: GMSAutocompleteResultsViewController?
-    var searchController: UISearchController?
-    let locationManager = CLLocationManager()
-    var sunInformation: Information!
-    var latitude: Double!
-    var longitude: Double!
-    var location: CLLocation! {
+    private var resultsViewController: GMSAutocompleteResultsViewController?
+    private var searchController: UISearchController?
+    private let locationManager = CLLocationManager()
+    private var sunInformation: Information?
+    private var latitude: Double?
+    private var longitude: Double?
+    private var location: CLLocation? {
         didSet {
-            latitude = location.coordinate.latitude
-            longitude = location.coordinate.longitude
+            latitude = location?.coordinate.latitude
+            longitude = location?.coordinate.longitude
         }
     }
     override var prefersStatusBarHidden: Bool {
@@ -40,28 +40,35 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        
+        setupSearchBar()
         checkCoreLocationPermission()
+
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
+       
+
+        definesPresentationContext = true
+    }
+}
+
+//MARK: Private extension
+private extension ViewController {
+    func setupSearchBar() {
+        searchController = UISearchController(searchResultsController: resultsViewController)
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
-        
-        searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
-        
         searchController?.searchBar.sizeToFit()
         navigationItem.titleView = searchController?.searchBar
         
-        view.addSubview((searchController?.searchBar)!)
+        view.addSubview((searchController?.searchBar) ?? UISearchBar())
         searchController?.searchBar.sizeToFit()
         searchController?.hidesNavigationBarDuringPresentation = false
-  
-        definesPresentationContext = true
-        }
-    
-    //MARK: Private functions
+    }
     
     func checkCoreLocationPermission() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -82,12 +89,12 @@ class ViewController: UIViewController {
                 if let city = placemark?.locality {
                     self.cityLabel.text = String(city)
                 } else {
-                    self.cityLabel.text = "City didn't found"
+                    self.cityLabel.text = "City didn't find"
                 }
                 if let country = placemark?.country {
                     self.countryLabel.text = String(country)
                 } else {
-                    self.countryLabel.text = "Country didn't found"
+                    self.countryLabel.text = "Country didn't find"
                 }
             }
         }
@@ -102,8 +109,9 @@ class ViewController: UIViewController {
                     SunService.shared.getSunInformation(latitude: latitude, longitude: longitude, completion: { (result) in
                         if let sunInformationData = result {
                             self.sunInformation = sunInformationData
+                            guard let sunInfo = self.sunInformation else { return }
                             DispatchQueue.main.async {
-                                self.updateLabel(info: self.sunInformation, location: location)
+                                self.updateLabel(info: sunInfo, location: location)
                             }
                         }
                     })
@@ -116,8 +124,9 @@ class ViewController: UIViewController {
         SunService.shared.getSunInformation(latitude: latitude, longitude: longitude, completion: { (result) in
             if let sunInformationData = result {
                 self.sunInformation = sunInformationData
+                guard let sunInfo = self.sunInformation, let location = self.location else { return }
                 DispatchQueue.main.async {
-                    self.updateLabel(info: self.sunInformation, location: self.location)
+                    self.updateLabel(info: sunInfo, location: location)
                 }
             }
         })
@@ -128,11 +137,9 @@ class ViewController: UIViewController {
         sunriseLabel.text = info.sunrise
         countryCityName(location: location)
     }
-
 }
 
-     //MARK: extension GMSAutocompleteResultsViewControllerDelegate
-
+//MARK: extension GMSAutocompleteResultsViewControllerDelegate
 extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
@@ -154,16 +161,16 @@ extension ViewController: GMSAutocompleteResultsViewControllerDelegate {
     }
 }
 
-     //MARK: extension CLLocationManagerDelegate
-
-extension ViewController: CLLocationManagerDelegate {
-func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    location = locations.last
-    locationManager.stopUpdatingLocation()
-    if latitude != nil, longitude != nil {
-        getSunInformationOnlyWithCoordinate(latitude: latitude, longitude: longitude)
-    }
-    countryCityName(location: location)
+//MARK: extension CLLocationManagerDelegate
+ extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        location = locations.last
+        locationManager.stopUpdatingLocation()
+        if let latitude = latitude, let longitude = longitude {
+            getSunInformationOnlyWithCoordinate(latitude: latitude, longitude: longitude)
+        }
+        guard let location = location else { return }
+        countryCityName(location: location)
     }
 }
 
