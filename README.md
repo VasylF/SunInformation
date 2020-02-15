@@ -2,7 +2,7 @@
 version 1.0.1. 11.06.2018
 
 # Description:
-SunInformation is an application that allows a user to view the sunrise/sunset information for his current location, which is determined automatically. The user is given the opportunity to search for any city and view the sunrise/sunset information for this city.
+SunInformation is an application that allows a user to view the sunrise/sunset information for his current location, which is determined automatically. The user is given the opportunity to search for any city and view the sunrise/sunset information for that city.
 
 # Table of Contents:
 SunInformation.xcodeproj
